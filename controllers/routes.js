@@ -1,6 +1,8 @@
-var routes = () => {
-  // Pizza Boy Controllers
-  require('./pizzaboy');
-}
+const express = require('express')
+const router = express.Router()
 
-module.exports = {routes};
+router.get('/', (req, res) => {
+  res.send("testasd");
+});
+
+module.exports = router;

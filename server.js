@@ -10,17 +10,13 @@ const port = process.env.PORT;
 
 // server
 const server = express();
-server.use(bodyParser.json());
+const router = require('./controllers/routes')
 
-server.get('/', (req, res) => {
-  res.send("testasd");
-});
+server.use(bodyParser.json());
+server.use('/', router)
 
 // Start
 server.listen(port);
 console.log(`Deliver Games API running on http://localhost:${port}`);
 
-module.exports = {server};
-
-// Add Routes
-require('./controllers/routes');
+module.exports = server;
