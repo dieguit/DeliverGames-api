@@ -1,0 +1,13 @@
+{
+  "name": "delivergames-api",
+  "version": "1.0.0",
+  "description": "Node.js API for Deliver Games",
+  "author": "Diego Gil <diego.gil2505@gmail.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
