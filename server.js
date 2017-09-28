@@ -1,18 +1,20 @@
 'use strict';
+require('./config/config');
 
+//const _ = require('lodash');
 const express = require('express');
+const bodyParser = require('body-parser');
+const {ObjectID} = require('mongodb');
 
-// Constants
-const PORT = 3000;
-const HOST = '0.0.0.0';
+const port = process.env.PORT;
 
 // App
 const app = express();
-app.get('/', (req, res) => {
-  res.send('Hello world\n');
-});
+app.use(bodyParser.json());
 
+// Routes
+require('./controllers/routes')(app);
 
-
+// Start
 app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+console.log(`Deliver Games API running on http://${HOST}:${PORT}`);
