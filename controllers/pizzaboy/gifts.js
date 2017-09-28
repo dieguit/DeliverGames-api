@@ -1,8 +1,8 @@
 
 
 
-var routes = (app, authenticate) => {
-  app.post('/todos', authenticate, (req, res) => {
+var routes = (server, authenticate) => {
+  server.post('/todos', authenticate, (req, res) => {
     var todo = new Todo({
       text: req.body.text,
       _creator: req.user._id
@@ -15,7 +15,7 @@ var routes = (app, authenticate) => {
     });
   });
 
-  app.get('/todos', authenticate, (req, res) => {
+  server.get('/todos', authenticate, (req, res) => {
     Todo.find({
       _creator: req.user._id
     }).then((todos) => {
@@ -25,7 +25,7 @@ var routes = (app, authenticate) => {
     });
   });
 
-  app.get('/todos/:id', authenticate, (req, res) => {
+  server.get('/todos/:id', authenticate, (req, res) => {
     var id = req.params.id;
 
     if (!ObjectID.isValid(id)) {
@@ -46,7 +46,7 @@ var routes = (app, authenticate) => {
     });
   });
 
-  app.delete('/todos/:id', authenticate, (req, res) => {
+  server.delete('/todos/:id', authenticate, (req, res) => {
     var id = req.params.id;
 
     if (!ObjectID.isValid(id)) {
@@ -67,7 +67,7 @@ var routes = (app, authenticate) => {
     });
   });
 
-  app.patch('/todos/:id', authenticate, (req, res) => {
+  server.patch('/todos/:id', authenticate, (req, res) => {
     var id = req.params.id;
     var body = _.pick(req.body, ['text', 'completed']);
 

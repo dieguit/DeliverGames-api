@@ -1,4 +1,6 @@
-const {authenticate} = require('./middleware/authenticate');
+var routes = () => {
+  // Pizza Boy Controllers
+  require('./pizzaboy');
+}
 
-// Pizza Boy Controllers
-require('./pizzaboy')(app, authenticate);
+module.exports = {routes};
