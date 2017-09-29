@@ -1,19 +1,23 @@
 'use strict';
 require('./config/config');
 
-const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
-const {ObjectID} = require('mongodb');
 
 const port = process.env.PORT;
 
 // server
 const server = express();
-const router = require('./controllers/routes')
 
 server.use(bodyParser.json());
+
+// API summary
+const router = require('./routes/main')
 server.use('/', router)
+
+// Pizza Boy
+const pizzaBoyRouter = require('./routes/pizzaboy')
+server.use('/pizzaboy', pizzaBoyRouter)
 
 // Start
 server.listen(port);
