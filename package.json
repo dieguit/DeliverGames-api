@@ -7,7 +7,7 @@
     "start": "nodemon -L server.js",
     "test": "export NODE_ENV=test || SET NODE_ENV=test && mocha ./**/*.test.js",
     "test-watch": "nodemon --exec 'npm test'",
-    "md-docs": "swagger-markdown -i ./docs/swagger/pizzaboy.yaml"
+    "md-docs": "swagger-markdown -i ./docs/swagger/pizzaboy.yaml -o ./docs/pizzaboy.md"
   },
   "dependencies": {
     "bcryptjs": "^2.3.0",
