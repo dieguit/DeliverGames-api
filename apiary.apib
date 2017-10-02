@@ -1,80 +1,138 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://localhost:3000/
 
 # Deliver Games
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+API for Deliver Games. General things to consider:
 
-## Questions Collection [/questions]
+* Response codes
 
-### List All Questions [GET]
+  - 200: Everyhing OK (Lists)
+  - 201: Creation OK
+  - 404: Resource not found
+  - 500: Server Error
+
+
+## Items Collection [/pizzaboy/item]
+
+### List All Items [GET]
 
 + Response 200 (application/json)
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
+        {
+            "items": [
+                {
+                    "_id": "59d2546c3305480027ad4861",
+                    "name": "Item de ejemplo 1",
+                    "code": "LANZACHORIS",
+                    "__v": 0
+                },
+                {
+                    "_id": "59d254a53305480027ad4862",
+                    "name": "Item de ejemplo 2",
+                    "code": "LANZACHORISMEJORATEDDD",
+                    "__v": 0
+                }
+            ]
+        }
 
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+### Create a New Item [POST]
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+          "name": "Item de ejemplo 2",
+          "code": "LANZACHORISMEJORATEDDD"
         }
 
 + Response 201 (application/json)
-
-    + Headers
-
-            Location: /questions/2
-
+    
     + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+        {
+            "createdItem": {
+                "__v": 0,
+                "name": "Item de ejemplo 2",
+                "code": "LANZACHORISMEJORATEDDD",
+                "_id": "59d254a53305480027ad4862"
             }
+        }
+
+## Gifts Collection [/pizzaboy/gift]
+
+### List All Gifts [GET]
+
++ Response 200 (application/json)
+
+        {
+            "gifts": [
+                {
+                    "_id": "59d254d73305480027ad4863",
+                    "item": {
+                        "_id": "59d2546c3305480027ad4861",
+                        "name": "Item de ejemplo 1",
+                        "code": "LANZACHORIS",
+                        "__v": 0
+                    },
+                    "code": "PIZZADEMOEXPO",
+                    "__v": 0,
+                    "expires": null,
+                    "redeemed": null,
+                    "users": [
+                        "user1",
+                        "user2"
+                    ]
+                },
+                {
+                    "_id": "59d254e03305480027ad4864",
+                    "item": {
+                        "_id": "59d2546c3305480027ad4861",
+                        "name": "Item de ejemplo 1",
+                        "code": "LANZACHORIS",
+                        "__v": 0
+                    },
+                    "code": "PIZZADEMOEXPO",
+                    "__v": 0,
+                    "expires": null,
+                    "redeemed": null,
+                    "users": []
+                },
+                {
+                    "_id": "59d254fa3305480027ad4865",
+                    "item": {
+                        "_id": "59d254a53305480027ad4862",
+                        "name": "Item de ejemplo 2",
+                        "code": "LANZACHORISMEJORATEDDD",
+                        "__v": 0
+                    },
+                    "code": "PIZZADEMOEXPOVIP",
+                    "__v": 0,
+                    "expires": null,
+                    "redeemed": null,
+                    "users": []
+                }
+            ]
+        }
+
+### Create a New Gift [POST]
+
+Create a new item. Name and code are required. Response is the new item created.
+
++ Request (application/json)
+
+        {
+          "item": "59d254a53305480027ad4862",
+          "code": "PIZZADEMOEXPOVIP"
+        }
+
++ Response 201 (application/json)
+    
+    + Body
+        {
+            "createdGift": {
+                "__v": 0,
+                "item": "59d254a53305480027ad4862",
+                "code": "PIZZADEMOEXPOVIP",
+                "_id": "59d254fa3305480027ad4865",
+                "redeemed": null
+            }
+        }
