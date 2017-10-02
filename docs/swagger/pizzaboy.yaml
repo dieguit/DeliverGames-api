@@ -1,0 +1,227 @@
+swagger: '2.0'
+info:
+  version: ''
+  title: PizzaBoy
+  description: ''
+host: 'localhost:3000'
+basePath: /pizzaboy
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  '/gift/{id}':
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+    get:
+      operationId: GET-gift
+      summary: Get gift
+      tags:
+        - Gifts
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/gift'
+    put:
+      operationId: PUT-gift
+      summary: Update gift
+      tags:
+        - Gifts
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/gift'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/gift'
+    delete:
+      operationId: DELETE-gift
+      summary: Delete gift
+      tags:
+        - Gifts
+      responses:
+        '204':
+          description: ''
+  /gift:
+    get:
+      operationId: LIST-gifts
+      summary: List gifts
+      tags:
+        - Gifts
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/gift'
+    post:
+      operationId: POST-gift
+      summary: Create gift
+      tags:
+        - Gifts
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/gift'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/gift'
+  /gift/redeem:
+    post:
+      operationId: POST_gift-redeem
+      summary: Redeem gift
+      tags:
+        - Gifts
+      description: |-
+        Send the user code and gift code.
+        - User code will come from Google Play user id.
+        - Gift code will be unique and allow to get a specific gift.
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              user:
+                type: string
+                minLength: 3
+              code:
+                type: string
+                minLength: 3
+            required:
+              - user
+              - code
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/item'
+        '404':
+          description: ''
+          schema:
+            type: object
+            properties:
+              errorMessage:
+                type: string
+        '500':
+          description: ''
+          schema:
+            type: object
+            properties:
+              errorMessage:
+                type: string
+  '/item/{id}':
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+    get:
+      operationId: GET-item
+      summary: Get item
+      tags:
+        - Items
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/item'
+    put:
+      operationId: PUT-item
+      summary: Update item
+      tags:
+        - Items
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/item'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/item'
+    delete:
+      operationId: DELETE-item
+      summary: Delete item
+      tags:
+        - Items
+      responses:
+        '204':
+          description: ''
+  /item:
+    get:
+      operationId: LIST-items
+      summary: List items
+      tags:
+        - Items
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/item'
+    post:
+      operationId: POST-item
+      summary: Create item
+      tags:
+        - Items
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/item'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/item'
+definitions:
+  item:
+    title: item
+    type: object
+    properties:
+      name:
+        type: string
+        minLength: 3
+      code:
+        type: string
+        minLength: 3
+    required:
+      - name
+      - code
+  gift:
+    title: gift
+    type: object
+    properties:
+      code:
+        type: string
+        minLength: 3
+      item:
+        $ref: '#/definitions/item'
+      users:
+        type: array
+        items:
+          type: string
+      redeemed:
+        type: string
+        format: date
+      expires:
+        type: string
+        format: date
+    required:
+      - code
