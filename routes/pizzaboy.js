@@ -11,9 +11,16 @@ pizzaBoyRouter.get('/', (req, res) => {
 // Items
 pizzaBoyRouter.get('/item', itemController.getItemList);
 pizzaBoyRouter.post('/item', itemController.createItem);
+pizzaBoyRouter.get('/item/:id', itemController.getItem);
+pizzaBoyRouter.put('/item/:id', itemController.updateItem);
+pizzaBoyRouter.delete('/item/:id', itemController.deleteItem);
 
 // Gifts
 pizzaBoyRouter.get('/gift', giftController.getGiftList);
 pizzaBoyRouter.post('/gift', giftController.createGift);
+pizzaBoyRouter.get('/gift/:id', giftController.getGift);
+pizzaBoyRouter.put('/gift/:id', giftController.updateGift);
+pizzaBoyRouter.delete('/gift/:id', giftController.deleteGift);
+pizzaBoyRouter.post('/gift/redeem', giftController.redeemGift);
 
 module.exports = pizzaBoyRouter;
