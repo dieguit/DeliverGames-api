@@ -91,15 +91,25 @@ const redeemGift = (req, res) => {
 
     // Remove the user so he cannot redeem twice.
     let newUsers = _.remove(gift.users, function(u) {
-      console.log('user: ', u);
       return u !== user;
     });
-    gift.users = newUsers;
-    gift.save((err, gift, numAffected) => {
-      res.status(200).send({item: gift.item});
-    })
+    let item = gift.item;
+    // If there are not any more users, delete the gift.
+    if (newUsers.length === 0) {
+      gift.remove(err => {
+        if (err)
+          return res.status(500).send({errorMessage: `Server error: ${err}.`});
 
-    // If there is 
+        res.status(200).send({item});
+      })
+    }
+    // Otherwise just update the remaining users.
+    else {
+      gift.users = newUsers;
+      gift.save((err, gift, numAffected) => {
+        res.status(200).send({item});
+      })
+    }
   })
 }
 
