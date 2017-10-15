@@ -28,6 +28,7 @@ const createItem = (req, res) => {
 
   item.code = req.body.code;
   item.name = req.body.name;
+  item.tier = req.body.tier;
 
   item.save((err, createdItem) => {
     if (err)
@@ -48,7 +49,7 @@ const updateItem = (req, res) => {
     if (!item)
       return res.status(404).send({message: `That item does not exist.`});
 
-    res.status(200).send({item});
+    res.status(200).send({newItem});
   })
 }
 

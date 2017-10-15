@@ -3,6 +3,7 @@ const pizzaBoyRouter = express.Router()
 
 const itemController = require('../controllers/pizzaboy/item')
 const giftController = require('../controllers/pizzaboy/gift')
+const chestController = require('../controllers/pizzaboy/chest')
 
 pizzaBoyRouter.get('/', (req, res) => {
   res.send("<h1>PizzaBoy</h1>");
@@ -22,5 +23,8 @@ pizzaBoyRouter.get('/gift/:id', giftController.getGift);
 pizzaBoyRouter.put('/gift/:id', giftController.updateGift);
 pizzaBoyRouter.delete('/gift/:id', giftController.deleteGift);
 pizzaBoyRouter.post('/gift/redeem', giftController.redeemGift);
+
+// Chests
+pizzaBoyRouter.post('/chest', chestController.generateChest);
 
 module.exports = pizzaBoyRouter;

@@ -13,6 +13,10 @@ const ItemSchema = new Schema({
     required: true,
     minlength: 1,
     trim: true
+  },
+  tier: {
+    type: Number,
+    required: true
   }
 });
 
