@@ -14,18 +14,10 @@ const ItemSchema = new Schema({
     minlength: 1,
     trim: true
   },
-  tiers: [{
-    tier: {
-      type: Number,
-      default: 0
-    },
-    chance: {
-      type: Number,
-      default: 50,
-      min: 0,
-      max: 100
-    }
-  }]
+  tier: {
+    type: Number,
+    required: true
+  }
 });
 
 const Item = mongoose.model('Item', ItemSchema)
