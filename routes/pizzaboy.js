@@ -14,6 +14,7 @@ pizzaBoyRouter.post('/item', itemController.createItem);
 pizzaBoyRouter.get('/item/:id', itemController.getItem);
 pizzaBoyRouter.put('/item/:id', itemController.updateItem);
 pizzaBoyRouter.delete('/item/:id', itemController.deleteItem);
+pizzaBoyRouter.get('/item/tier/:tier', itemController.getRandomByTier);
 
 // Gifts
 pizzaBoyRouter.get('/gift', giftController.getGiftList);

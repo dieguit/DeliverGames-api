@@ -18,7 +18,8 @@
     "lodash": "^4.15.0",
     "mongodb": "^2.2.5",
     "mongoose": "^4.5.9",
-    "validator": "^5.6.0"
+    "validator": "^5.6.0",
+    "biguint-format": "^1.0.0"
   },
   "devDependencies": {
     "expect": "^21.1.0",
