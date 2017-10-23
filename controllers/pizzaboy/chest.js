@@ -2,8 +2,51 @@ const _ = require('lodash')
 
 const Item = require('../../models/pizzaboy/item')
 
-// @TODO: error handling!
 const generateChest = (req, res) => {
+  let chest = {
+    size: req.body.size,
+    tiers: req.body.tiers
+  };
+
+  if (!chest.size || !(_.isInteger(chest.size))) {
+    return res.status(500).send({errorMessage: `Server error: Chest size must be an integer.`});
+  }
+
+  if (!chest.tiers || chest.tiers.length === 0) {
+    return res.status(500).send({errorMessage: `Server error: Must provide at least one tier.`});
+  }
+
+  var itemTiers = [];
+  for (var i = 0; i < chest.size; i++) {
+    let chosenTier = -1;
+    let tier = 0;
+    while (chosenTier === -1 && tier < chest.tiers.length) {
+      if (Math.random() <= chest.tiers[tier] / 100) {
+        chosenTier = tier;
+      }
+      tier++;
+    }
+    // Get next tier as fallback chosenTier.
+    chosenTier = chosenTier === -1 ? tier : chosenTier;
+
+    // Add or create tier value.
+    itemTiers[chosenTier] = itemTiers[chosenTier] ? itemTiers[chosenTier] + 1 : 1;
+  }
+
+  var itemList = [];
+  Item.find({}, (err, items) => {
+    if (!err && items) {
+      itemList = items;
+      console.warn('itemTiers', itemTiers);
+      for (var i = 0; i < itemTiers.length; i++) {
+        //if (itemTiers[i])
+      }
+      return res.status(200).send({itemTiers});
+    }
+  });
+}
+
+const generateChest2 = (req, res) => {
   let chest = {
     size: req.body.size,
     tiers: req.body.tiers
