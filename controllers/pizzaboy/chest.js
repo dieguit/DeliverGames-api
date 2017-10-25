@@ -34,15 +34,34 @@ const generateChest = (req, res) => {
   }
 
   var itemList = [];
+  // Get all items... Doing one by one async is too much effort for < 20 items!
   Item.find({}, (err, items) => {
     if (!err && items) {
-      itemList = items;
-      console.warn('itemTiers', itemTiers);
-      for (var i = 0; i < itemTiers.length; i++) {
-        //if (itemTiers[i])
+      // Get random items for each tier.
+      for ([itemIndex, itemTier] of itemTiers.entries()) {
+        // Handle nulls coming from random().
+        if (itemTier) {
+          for (var j = 0; j < itemTier; j++) {
+            var possibleItems = items.filter(i => {
+              return i.tier === itemIndex
+            });
+
+            var item = possibleItems[Math.floor(Math.random() * possibleItems.length)];
+            if (!item) {
+              return res.status(500).send({errorMessage: `Server error: Not enougth items.`});
+            }
+
+            // Remove item so it does not repeat.
+            items = items.filter(i => {
+              return i['_id'] !== item['_id']
+            });
+            itemList.push(item);
+          }
+        }
       }
-      return res.status(200).send({itemTiers});
+      return res.status(200).send({itemList});
     }
+    return res.status(500).send({errorMessage: `Server error: ${err}.`});
   });
 }
 
