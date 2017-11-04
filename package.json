@@ -4,7 +4,8 @@
   "description": "Node.js API for Deliver Games",
   "author": "Diego Gil <diego.gil2505@gmail.com>",
   "scripts": {
-    "start": "nodemon -L server.js",
+    "start-watch": "nodemon -L server.js",
+    "start": "node server.js",
     "test": "export NODE_ENV=test || SET NODE_ENV=test && mocha ./**/*.test.js",
     "test-watch": "nodemon --exec 'npm test'",
     "md-docs": "swagger-markdown -i ./docs/swagger/pizzaboy.yaml -o ./docs/pizzaboy.md"
