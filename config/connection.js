@@ -1,9 +1,9 @@
 const development = {
-  database: 'databasename',
-  username: 'username',
-  password: 'password',
+  database: 'delivergames_api',
+  username: 'root',
+  password: '',
   host: 'localhost',
-  dialect: 'sqlite' || 'mysql' || 'postgres',
+  dialect: 'mysql',
 };
 
 const testing = {
@@ -11,7 +11,7 @@ const testing = {
   username: 'username',
   password: 'password',
   host: 'localhost',
-  dialect: 'sqlite' || 'mysql' || 'postgres',
+  dialect: 'mysql',
 };
 
 const production = {
@@ -19,7 +19,7 @@ const production = {
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   host: process.env.DB_HOST || 'localhost',
-  dialect: 'sqlite' || 'mysql' || 'postgres',
+  dialect: 'mysql',
 };
 
 module.exports = {

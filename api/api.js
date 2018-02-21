@@ -47,16 +47,15 @@ api.use(bodyParser.json());
 api.use('/rest', mappedRoutes);
 
 // private GraphQL API
-api.all('/graphql', (req, res, next) => auth(req, res, next));
 api.get('/graphql', GraphHTTP({
   schema: Schema,
   pretty: true,
-  graphiql: false,
+  graphiql: true,
 }));
 api.post('/graphql', GraphHTTP({
   schema: Schema,
   pretty: true,
-  graphiql: false,
+  graphiql: true,
 }));
 
 server.listen(config.port, () => {
@@ -67,5 +66,6 @@ server.listen(config.port, () => {
     console.error(`NODE_ENV is set to ${environment}, but only production and development are valid.`);
     process.exit(1);
   }
+  console.log(`API listening on port ${config.port}`);
   return DB;
 });
