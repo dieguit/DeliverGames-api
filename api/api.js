@@ -1,21 +1,21 @@
 /**
  * third party libraries
  */
-const bodyParser = require('body-parser');
-const express = require('express');
-const helmet = require('helmet');
-const http = require('http');
-const mapRoutes = require('express-routes-mapper');
-const GraphHTTP = require('express-graphql');
-const cors = require('cors');
+import bodyParser from 'body-parser';
+import express from 'express';
+import helmet from 'helmet';
+import http from 'http';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+import mapRoutes from 'express-routes-mapper';
+import cors from 'cors';
 
 /**
  * server configuration
  */
-const config = require('../config/');
-const auth = require('./policies/auth.policy');
-const dbService = require('./services/db.service');
-const Schema = require('./controllers/');
+import config from '../config/';
+import auth from './policies/auth.policy';
+import dbService from './services/db.service';
+import schema from './models/Schema';
 
 // environment: development, testing, production
 const environment = process.env.NODE_ENV;
@@ -46,17 +46,11 @@ api.use(bodyParser.json());
 // public REST API
 api.use('/rest', mappedRoutes);
 
-// private GraphQL API
-api.get('/graphql', GraphHTTP({
-  schema: Schema,
-  pretty: true,
-  graphiql: true,
-}));
-api.post('/graphql', GraphHTTP({
-  schema: Schema,
-  pretty: true,
-  graphiql: true,
-}));
+// The GraphQL endpoint
+api.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+
+// GraphiQL, a visual editor for queries
+api.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 server.listen(config.port, () => {
   if (environment !== 'production' &&
