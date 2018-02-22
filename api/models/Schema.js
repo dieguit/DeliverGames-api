@@ -1,5 +1,5 @@
 import { makeExecutableSchema } from 'graphql-tools';
-import Resolvers from './Resolvers';
+import resolvers from './Resolvers';
 import User from './User/UserType';
 import Note from './Note/NoteType';
 
@@ -26,7 +26,7 @@ const rootQuery = `
 
 const Schema = makeExecutableSchema({
   typeDefs: [rootQuery, User, Note],
-  Resolvers,
+  resolvers,
 });
 
 export default Schema;

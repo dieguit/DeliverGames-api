@@ -9,6 +9,7 @@ const AuthController = () => {
 
     if (body.password === body.password2) {
       return User.create({
+        username: body.username,
         email: body.email,
         password: body.password,
       })
@@ -27,13 +28,14 @@ const AuthController = () => {
   };
 
   const login = (req, res) => {
+    const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
 
     if (email && password) {
       User.findOne({
         where: {
-          email,
+          [Op.or]: [{username}, {email}],
         },
       })
         .then((user) => {
