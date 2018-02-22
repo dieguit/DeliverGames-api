@@ -1,6 +1,7 @@
-const Sequelize = require('sequelize');
+import Sequelize from 'sequelize';
+import sequelize from '../../../config/database';
 
-const sequelize = require('../../../config/database');
+import User from '../User/User';
 
 const tableName = 'notes';
 

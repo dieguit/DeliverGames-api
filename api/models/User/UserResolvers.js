@@ -3,21 +3,15 @@ import User from './User';
 const UserResolvers = {
   Query: {
     users: () => User.findAll(),
-    user(parent, args) {
-      return {
-        id: 1,
-        username: 'pepe',
-      };
-    },
-/*    user: async (parent, args) => User.findOne({
+    user: async (parent, args) => User.findOne({
       where: {
         id: args.id,
       },
-    }),*/
+    }),
   },
   User: {
     notes(user) {
-      return [{id: 123, text: 'asd'}];
+      return user.getNotes();
     },
   },
   Mutation: {

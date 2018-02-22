@@ -1,7 +1,7 @@
 const Note = `
   type Note {
     id: ID!
-    text: String!
+    note: String!
     user: User
   }
 `;

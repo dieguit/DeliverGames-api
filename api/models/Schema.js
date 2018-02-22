@@ -13,14 +13,14 @@ const rootQuery = `
     notes: [Note]
     note(
       id: Int!
-      userId: Int!
+      UserId: Int!
     ): Note
   }
   
   type Mutation {
     createUser(username: String!, email: String!, password: String!): User
   
-    createNote(text: String!, userId: ID!): Note
+    createNote(note: String!, UserId: ID!): Note
   }
 `;
 

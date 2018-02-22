@@ -1,8 +1,10 @@
 import { merge } from 'lodash';
-import userResolvers from './User/UserResolvers';
+import UserResolvers from './User/UserResolvers';
+import NoteResolvers from './Note/NoteResolvers'
 
 const Resolvers = merge(
-  userResolvers,
+  UserResolvers,
+  NoteResolvers,
 );
 
 export default Resolvers;
