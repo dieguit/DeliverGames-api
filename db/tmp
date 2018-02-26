@@ -1,0 +1,48 @@
+query {
+  gamePlayers {
+    clubName
+    id
+    field {
+      id
+      name
+    }
+  }
+}
+
+mutation {
+  createGamePlayer(
+    hash: "123123asd"
+    clubName: "Deliver Team"
+    clubLogo: "jhkabsd"
+    coins: 123
+    altCoins: 0
+    ) {
+    id
+    clubName
+  }
+}
+
+query {
+  fields {
+    skin
+    name
+    gamePlayer {
+      id
+      clubName
+    }
+  }
+}
+
+mutation {
+  createField(
+    skin: "123123asd"
+    name: "Deliver Atletic Campito"
+    GamePlayerId: 2
+    ) {
+    id
+    gamePlayer {
+      id
+      clubName
+    }
+  }
+}
