@@ -6,5 +6,3 @@ RUN npm install swagger-markdown -g
 
 COPY package.json /api/package.json
 RUN npm install
-
-CMD ["npm", "start"]
