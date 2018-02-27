@@ -1,4 +1,4 @@
-import LocalConfig from './connection.local';
+const LocalConfig = require('./connection.local');
 
 const development = {
   database: LocalConfig.development.database || 'delivergames_api',

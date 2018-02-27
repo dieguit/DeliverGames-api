@@ -21,7 +21,10 @@
     "nodemon": "nodemon --exec npm run dev",
     "prepush": "npm test; npm run drop-sqlite-db; npm run create-sqlite-db",
     "pretest": "npm run lint",
-    "production": "cross-env NODE_ENV=production node ./api/api.js",
+    "clean": "rm -rf build && mkdir build",
+    "build-server": "babel -d ./build ./api -s",
+    "build": "npm run clean && npm run build-server",
+    "production": "cross-env NODE_ENV=production node ./build/api.js",
     "test": "cross-env NODE_ENV=testing && nyc ava",
     "test-ci": "nyc ava --no-color"
   },
