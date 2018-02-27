@@ -30,7 +30,8 @@
   },
   "babel": {
     "presets": [
-      "env"
+      "env",
+      "stage-3"
     ]
   },
   "ava": {
@@ -74,6 +75,7 @@
     "husky": "^0.13.4",
     "shx": "^0.2.2",
     "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.0.16",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-3": "^6.24.1"
   }

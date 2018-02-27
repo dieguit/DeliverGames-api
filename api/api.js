@@ -1,6 +1,8 @@
 /**
  * third party libraries
  */
+import babelCoreRegister from 'babel-core/register';
+import babelPolyfill from 'babel-polyfill';
 import bodyParser from 'body-parser';
 import express from 'express';
 import helmet from 'helmet';
