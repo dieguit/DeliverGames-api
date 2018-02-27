@@ -1,5 +1,5 @@
 FROM node:alpine
-WORKDIR /app
+WORKDIR /api
 
 RUN npm install nodemon -g
 RUN npm install swagger-markdown -g
