@@ -7,6 +7,7 @@ const GamePlayer = `
     coins: Int
     altCoins: Int
     field: Field
+    inventoryItems: [InventoryItem]
   }
 `;
 

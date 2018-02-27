@@ -6,6 +6,11 @@ query {
       id
       name
     }
+    inventoryItems {
+      id
+      skin
+      itemType
+    }
   }
 }
 
@@ -43,6 +48,75 @@ mutation {
     gamePlayer {
       id
       clubName
+    }
+  }
+}
+
+query {
+  inventoryItems {
+    id
+    skin
+    itemType
+    gamePlayer {
+      id
+      clubName
+    }
+  }
+}
+
+mutation {
+  createInventoryItem(
+    skin: "123123asd"
+    itemType: "NPC"
+    GamePlayerId: 1
+    ) {
+    id
+    gamePlayer {
+      id
+      clubName
+    }
+  }
+}
+
+query {
+  fieldElements {
+    id
+    posX
+    posY
+    posZ
+    rotX
+    rotY
+    rotZ
+    inventoryItem {
+      id
+      itemType
+    }
+    field {
+      id
+      name
+    }
+  }
+}
+
+mutation {
+  createFieldElement(
+    FieldId: 1
+    InventoryItemId: 1
+    posX: 123.123123
+    posY: 123.123123
+    posZ: 123.123123
+    rotX: 123.123123
+    rotY: 123.123123
+    rotZ: 123.123123
+    ) {
+    id
+    field {
+      id
+      name
+    }
+    inventoryItem {
+      id
+      itemType
     }
   }
 }

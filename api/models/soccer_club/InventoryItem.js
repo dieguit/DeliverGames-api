@@ -1,22 +1,19 @@
 import Sequelize from 'sequelize';
 import sequelize from '../../../config/database';
 import GameConfig from './config';
-
-import GamePlayer from './GamePlayer';
 import FieldElement from './FieldElement';
 
-const tableName = `${GameConfig.TablePrefix}_fields`;
+const tableName = `${GameConfig.TablePrefix}_inventory_items`;
 
-const Field = sequelize.define('Field', {
+const InventoryItem = sequelize.define('InventoryItem', {
   skin: {
     type: Sequelize.STRING,
   },
-  name: {
+  itemType: {
     type: Sequelize.STRING,
   },
 }, { tableName });
 
-Field.belongsTo(GamePlayer);
-Field.hasMany(FieldElement, { as: 'FieldElements' });
+InventoryItem.hasMany(FieldElement, { as: 'FieldElements' });
 
-export default Field;
+export default InventoryItem;

@@ -18,6 +18,10 @@ const GamePlayerResolvers = {
       });
       return field;
     },
+    async inventoryItems(gamePlayer) {
+      const inventoryItems = await gamePlayer.getInventoryItems();
+      return inventoryItems;
+    },
   },
   Mutation: {
     createGamePlayer: async (parent, args) => {

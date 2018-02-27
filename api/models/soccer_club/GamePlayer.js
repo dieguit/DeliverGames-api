@@ -2,6 +2,8 @@ import Sequelize from 'sequelize';
 import sequelize from '../../../config/database';
 import GameConfig from './config';
 
+import InventoryItem from './InventoryItem';
+
 const tableName = `${GameConfig.TablePrefix}_gameplayers`;
 
 const GamePlayer = sequelize.define('GamePlayer', {
@@ -29,5 +31,7 @@ const GamePlayer = sequelize.define('GamePlayer', {
     type: Sequelize.STRING,
   },
 }, { tableName });
+
+GamePlayer.hasMany(InventoryItem, { as: 'InventoryItems' });
 
 export default GamePlayer;
