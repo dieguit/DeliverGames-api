@@ -59,10 +59,10 @@
     "helmet": "^3.6.1",
     "jsonwebtoken": "^7.4.1",
     "lodash": "^4.17.5",
-    "mysql": "^2.15.0",
+    "mysql2": "^1.5.2",
     "nodemon": "^1.11.0",
     "nyc": "^11.0.1",
-    "sequelize": "^3.30.4",
+    "sequelize": "^4.22.0",
     "sqlite3": "^3.1.8",
     "supertest": "^3.0.0"
   },

@@ -1,5 +1,5 @@
 module.exports = {
-  'POST /register': 'AuthController.register',
-  'POST /login': 'AuthController.login',
-  'POST /validate': 'AuthController.validate',
+  'POST /register': 'Auth/AuthController.register',
+  'POST /login': 'Auth/AuthController.login',
+  'POST /validate': 'Auth/AuthController.validate'
 };

@@ -27,7 +27,8 @@ const environment = process.env.NODE_ENV;
  */
 const api = express();
 const server = http.Server(api);
-const mappedRoutes = mapRoutes(config.publicRoutes, 'api/controllers/Auth/');
+const mappedRoutes = mapRoutes(config.publicRoutes, 'api/controllers/public/');
+const privMappedRoutes = mapRoutes(config.privateRoutes, 'api/controllers/priv/');
 const DB = dbService(environment, config.migrate).start();
 
 // allow cross origin requests
@@ -44,6 +45,9 @@ api.use(helmet({
 // parsing the request bodys
 api.use(bodyParser.urlencoded({ extended: false }));
 api.use(bodyParser.json());
+
+// public REST API
+api.use('/priv', (req, res, next) => auth(req, res, next), privMappedRoutes);
 
 // public REST API
 api.use('/rest', mappedRoutes);

@@ -4,8 +4,8 @@ const {
   GraphQLNonNull,
 } = require('graphql');
 
-const NoteType = require('../../models/Note/NoteType');
-const Note = require('../../models/Note/Note');
+const NoteType = require('../../../models/Note/NoteType');
+const Note = require('../../../models/Note/Note');
 
 const createNote = {
   type: NoteType,

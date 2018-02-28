@@ -1,6 +1,6 @@
-const User = require('../../models/User/User');
-const authService = require('../../services/auth.service');
-const bcryptService = require('../../services/bcrypt.service');
+const User = require('../../../models/User/User');
+const authService = require('../../../services/auth.service');
+const bcryptService = require('../../../services/bcrypt.service');
 
 const AuthController = () => {
   const register = (req, res) => {
@@ -70,10 +70,15 @@ const AuthController = () => {
     });
   };
 
+  const test = (req, res) => {
+    return res.status(200).json({ test: "Hello" });
+  };
+
   return {
     register,
     login,
     validate,
+    test,
   };
 };
 
