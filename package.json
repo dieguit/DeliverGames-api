@@ -24,7 +24,7 @@
     "clean": "rm -rf build && mkdir build",
     "build-server": "babel -d ./build ./api -s",
     "build": "npm run clean && npm run build-server",
-    "production": "cross-env NODE_ENV=production node ./build/api.js",
+    "production": "npm run build && cross-env NODE_ENV=production node ./build/api.js",
     "test": "cross-env NODE_ENV=testing && nyc ava",
     "test-ci": "nyc ava --no-color"
   },
