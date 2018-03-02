@@ -1,4 +1,4 @@
-const User = require('../../../models/User/User');
+const User = require('../../../models/shared/User/User');
 const authService = require('../../../services/auth.service');
 const bcryptService = require('../../../services/bcrypt.service');
 import { Op } from 'sequelize';

@@ -16,6 +16,13 @@ const UserResolvers = {
   },
   Mutation: {
     createUser: async (parent, args) => User.create(args),
+    deleteUser: async (parent, args) => {
+      const user = await User.findOne({
+        where: { id: args.id },
+      });
+      await user.destroy();
+      return args.id;
+    },
   },
 };
 

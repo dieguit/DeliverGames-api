@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const bcryptSevice = require('../../services/bcrypt.service');
+const bcryptSevice = require('../../../services/bcrypt.service');
 
-const sequelize = require('../../../config/database');
+const sequelize = require('../../../../config/database');
 const Note = require('../Note/Note');
 
 const hooks = {

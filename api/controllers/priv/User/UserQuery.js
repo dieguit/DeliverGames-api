@@ -4,8 +4,8 @@ const {
   GraphQLList,
 } = require('graphql');
 
-const UserType = require('../../../models/User/UserType');
-const User = require('../../../models/User/User');
+const UserType = require('../../../models/shared/User/UserType');
+const User = require('../../../models/shared/User/User');
 
 const userQuery = {
   type: new GraphQLList(UserType),

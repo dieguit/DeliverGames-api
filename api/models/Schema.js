@@ -1,7 +1,7 @@
 import { makeExecutableSchema } from 'graphql-tools';
 import resolvers from './Resolvers';
-import User from './User/UserType';
-import Note from './Note/NoteType';
+import User from './shared/User/UserType';
+import Note from './shared/Note/NoteType';
 import GamePlayer from './soccer_club/GamePlayerType';
 import Field from './soccer_club/FieldType';
 import InventoryItem from './soccer_club/InventoryItemType';
@@ -44,11 +44,16 @@ const rootQuery = `
   }
   
   type Mutation {
-      createUser(username: String!, 
+    createUser(username: String!, 
       email: String!, 
       password: String!
     ): User
-  
+    
+    deleteUser(
+      id: Int!
+    ): Int
+
+
     createNote(
       note: String!, 
       UserId: ID!
