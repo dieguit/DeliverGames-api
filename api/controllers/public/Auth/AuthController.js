@@ -46,7 +46,7 @@ const AuthController = () => {
         }
 
         if (bcryptService.comparePassword(password, user.password)) {
-          const token = authService.issue({ id: user.id });
+          const token = authService.issue({ username: user.username, email: user.email });
 
           return res.status(200).json({ token, user });
         }
@@ -75,15 +75,10 @@ const AuthController = () => {
     });
   };
 
-  const test = (req, res) => {
-    return res.status(200).json({ test: "Hello" });
-  };
-
   return {
     register,
     login,
     validate,
-    test,
   };
 };
 
