@@ -22,11 +22,11 @@ const AuthController = () => {
         })
         .catch((err) => {
           console.log(err);
-          return res.status(500).json({ msg: 'Internal server error' });
+          return res.status(500).json({ message: 'Internal server error' });
         });
     }
 
-    return res.status(400).json({ msg: 'Passwords don\'t match' });
+    return res.status(400).json({ message: 'Passwords don\'t match' });
   };
 
   const login = (req, res) => {
@@ -42,7 +42,7 @@ const AuthController = () => {
       })
       .then((user) => {
         if (!user) {
-          return res.status(400).json({ msg: 'Bad Request: User not found' });
+          return res.status(400).json({ message: 'Bad Request: User not found' });
         }
 
         if (bcryptService.comparePassword(password, user.password)) {
@@ -51,15 +51,15 @@ const AuthController = () => {
           return res.status(200).json({ token, user });
         }
 
-        return res.status(401).json({ msg: 'Unauthorized' });
+        return res.status(401).json({ message: 'Unauthorized' });
       })
       .catch((err) => {
         console.log(err);
-        return res.status(500).json({ msg: 'Internal server error' });
+        return res.status(500).json({ message: 'Internal server error' });
       });
     }
     else {
-      return res.status(400).json({ msg: 'Bad Request: username/email/password missing!' });
+      return res.status(400).json({ message: 'Bad Request: username/email/password missing!' });
     }
   };
 
