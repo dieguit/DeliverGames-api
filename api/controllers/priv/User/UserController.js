@@ -14,6 +14,24 @@ const AuthController = () => {
       });
   };
 
+  const updateUser = (req, res) => {
+    const userId = req.params.id;
+    const user = req.body;
+
+    if (userId) {
+      User.update(
+        user,
+        { where: { id: userId }},
+      ).then(updatedUser => (
+        res.status(200).send({ updatedUser } )
+      )).catch(err => (
+        res.status(500).send({ errorMessage: `Server error: ${err}.` })
+      ));
+    } else {
+      return res.status(500).json({ msg: 'Must provide a numeric user id.' });
+    }
+  };
+
   const deleteUser = (req, res) => {
     const userId = req.params.id;
     if (userId) {
@@ -36,6 +54,7 @@ const AuthController = () => {
 
   return {
     list,
+    updateUser,
     deleteUser,
   };
 };
