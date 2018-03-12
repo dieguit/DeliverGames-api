@@ -75,7 +75,13 @@ const dbService = (environment, migrate) => {
 
   const startProd = () => (
     authenticateDB()
-      .then(() => startMigrateFalse())
+      .then(() => {
+        if (migrate) {
+          return startMigrateTrue();
+        }
+
+        return startMigrateFalse();
+      })
   );
 
   const start = () => {
