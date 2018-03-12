@@ -8,7 +8,6 @@ const AuthController = () => {
   const register = (req, res) => {
     const body = req.body;
 
-
     if (body.password === body.password2) {
       return User.create({
         username: body.username,
@@ -16,7 +15,7 @@ const AuthController = () => {
         password: body.password,
       })
         .then((user) => {
-          const token = authService.issue({ id: user.id });
+          const token = authService.issue({ username: user.username, email: user.email });
 
           return res.status(200).json({ token, user });
         })

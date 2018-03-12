@@ -19,14 +19,18 @@ const AuthController = () => {
     const user = req.body;
 
     if (userId) {
-      User.update(
-        user,
-        { where: { id: userId }},
-      ).then(updatedUser => (
-        res.status(200).send({ updatedUser } )
-      )).catch(err => (
-        res.status(500).send({ message: `Server error: ${err}.` })
-      ));
+      User.findById(userId).then(foundUser => {
+        if (foundUser) {
+          foundUser.update(user).then(() => (
+            res.status(200).send({ user })
+          ));
+        } else {
+          return res.status(404).send({ message: 'That user does not exist.' });
+        }
+      })
+        .catch(err => {
+          return res.status(500).send({ message: `Server error: ${err}.` });
+        });
     } else {
       return res.status(500).json({ message: 'Must provide a numeric user id.' });
     }
